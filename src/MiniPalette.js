@@ -14,7 +14,7 @@ var styles = {
         }
     },
     colors:{
-        backgroungColor: 'grey'
+        backgroungColor: 'grey!important'
     },
     title:{
         display: 'flex',
@@ -36,10 +36,9 @@ function MinPalette(props){
 
     return(
         <div className={classes.root}>
-            <div className={classes.colors}>
-                
-            </div>
+            <div className={classes.colors}>                
             <h5 className={classes.title}>{paletteName} <span className={classes.emoji}>{emoji}</span></h5>
+            </div>
         </div>
     )
 }
