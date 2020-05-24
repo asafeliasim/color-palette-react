@@ -14,7 +14,7 @@ var styles = {
         }
     },
     colors:{
-        backgroungColor: 'grey!important'
+        backgroundColor: 'grey!important'
     },
     title:{
         display: 'flex',
