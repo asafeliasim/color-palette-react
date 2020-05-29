@@ -23,7 +23,7 @@ class App extends Component {
         <Route
             exact
             path="/palette/new"
-            render={() =><NewPaletteForm/>}
+            render={() =><NewPaletteForm />}
         />
         <Route
             exact
