@@ -5,7 +5,7 @@ import styles from './styles/MiniPalette';
 function MinPalette(props){
     var {classes,paletteName,emoji,colors,handleClick} = props;
     var miniColorsBoxes = colors.map(c =>(
-        <div className={classes.miniColor} style={{backgroundColor: c.color}} key={c.id}/>
+        <div className={classes.miniColor} style={{backgroundColor: c.color}} key={c.name}/>
     ));
     return(
         <div className={classes.root} onClick={handleClick}>
