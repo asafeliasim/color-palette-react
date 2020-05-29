@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import { withStyles} from '@material-ui/core/styles';
+import PaletteFormNav from "./PaletteFormNav";
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import classNames from "classnames";
@@ -109,10 +111,7 @@ class NewPaletteForm extends Component {
         ValidatorForm.addValidationRule("isColorUnique", value =>
             this.state.colors.every(({color}) => color !== this.state.currentColor)
         );
-        ValidatorForm.addValidationRule("isPaletteNameUnique",value =>
-            this.props.palettes.every(({paletteName}) =>
-                paletteName.toLowerCase() !== value.toLowerCase())
-        );
+
     }
     addNewColor(){
 
@@ -137,11 +136,10 @@ class NewPaletteForm extends Component {
             [evt.target.name]: evt.target.value
         });
     }
-    savePalette(){
-        let newName = this.state.newPaletteName
+    savePalette(newPaletteName){
         const newPalette = {
-            paletteName:newName,
-            id: newName.toLowerCase().replace(/ /g,"-"),
+            paletteName:newPaletteName,
+            id: newPaletteName.toLowerCase().replace(/ /g,"-"),
             colors: this.state.colors
         }
         this.props.savePalette(newPalette);
@@ -170,50 +168,17 @@ class NewPaletteForm extends Component {
     }
     render(){
         const { open, colors,currentColor } = this.state;
-        const {classes,maxColors} = this.props;
+        const {classes,maxColors,palettes} = this.props;
         const paletteIsFull = colors.length >= maxColors;
         return (
             <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    color="default"
-                    className={classes.appBar}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={this.handleDrawerOpen}
-                            edge="start"
-                            className={classes.menuButton}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" noWrap>
-                            Create your own palette colors
-                        </Typography>
-                        <ValidatorForm onSubmit={this.savePalette}>
-                        <TextValidator
-                            label="Palette Name"
-                            name="newPaletteName"
-                            value={this.state.newPaletteName}
-                            onChange={this.handleChange}
-                            validators={["required","isPaletteNameUnique"]}
-                            errorMessages={["Enter Palette Name","Palette Name is already used"]}
-                        />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-
-                            >
-                                Save Palette
-                            </Button>
-                        </ValidatorForm>
-
-                    </Toolbar>
-                </AppBar>
+                <PaletteFormNav
+                    open={open}
+                    classes={classes}
+                    palettes={palettes}
+                    savePalette={this.savePalette}
+                    handleDrawerOpen={this.handleDrawerOpen}
+                />
                 <Drawer
                     variant="persistent"
                     anchor="left"
