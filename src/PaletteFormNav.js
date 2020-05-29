@@ -10,8 +10,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-
-
 class PaletteFormNav extends Component {
     constructor(props) {
         super(props);
