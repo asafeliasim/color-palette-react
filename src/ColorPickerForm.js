@@ -40,6 +40,7 @@ class ColorPickerForm extends Component {
             name: this.state.newColorName
         }
         this.props.addNewColor(newColor);
+        this.setState({newColorName: ''})
     }
     render() {
         const {paletteIsFull} = this.props;
@@ -66,7 +67,7 @@ class ColorPickerForm extends Component {
                         variant='contained'
                         type='submit'
                         color='primary'
-                        style={{ backgroundColor: paletteIsFull? 'grey':this.state.currentColor }}
+                        style={{ backgroundColor: paletteIsFull? 'grey':currentColor }}
                         disabled={paletteIsFull}
                     >
                         {paletteIsFull? "Palette Full": "Add Color"}
