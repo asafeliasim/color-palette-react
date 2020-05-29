@@ -83,11 +83,12 @@ class NewPaletteForm extends Component {
             open: false,
             currentColor: 'teal',
             newName: '',
-            colors: [{color:'#000',name:'black'}]
+            colors: []
         };
         this.addNewColor= this.addNewColor.bind(this);
         this.updateCurrentColor= this.updateCurrentColor.bind(this);
         this.handleChange= this.handleChange.bind(this);
+        this.savePalette= this.savePalette.bind(this);
 
     }
 
@@ -113,6 +114,16 @@ class NewPaletteForm extends Component {
     handleChange(evt){
         this.setState({newName: evt.target.value});
     }
+    savePalette(){
+        let newName = "New Test palette"
+        const newPalette = {
+            paletteName:newName,
+            id: newName.toLowerCase().replace(/ /g,"-"),
+            colors: this.state.colors
+        }
+        this.props.savePalette(newPalette);
+        this.props.history.push('/');
+    }
     render(){
         const { open, colors,currentColor } = this.state;
         const {classes} = this.props;
@@ -122,6 +133,7 @@ class NewPaletteForm extends Component {
                 <CssBaseline />
                 <AppBar
                     position="fixed"
+                    color="default"
                     className={classes.appBar}
                 >
                     <Toolbar>
@@ -137,6 +149,13 @@ class NewPaletteForm extends Component {
                         <Typography variant="h6" noWrap>
                             Create your own palette colors
                         </Typography>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.savePalette}
+                        >
+                            Save Palette
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <Drawer
