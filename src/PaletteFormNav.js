@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import PaletteMetaForm from "./PaletteMetaForm";
+
 
 const drawerWidth = 400;
 const styles = theme => ({
@@ -23,6 +24,7 @@ const styles = theme => ({
         }),
         flexDirection:"row",
         justifyContent:"space-between",
+        alignItems:"center",
         height: '64px'
     },
     appBarShift: {
@@ -37,33 +39,33 @@ const styles = theme => ({
         marginRight: theme.spacing(2),
     },
     navBtns: {
-
+        marginRight: '1rem'
+    },
+    button: {
+        margin: '0 0.5rem'
     }
 })
 
 class PaletteFormNav extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            newPaletteName:''
-        }
+        this.state = {newPaletteName: '', formShowing:true}
         this.handleChange= this.handleChange.bind(this);
+        this.showForm= this.showForm.bind(this);
     }
-    componentDidMount() {
-        ValidatorForm.addValidationRule("isPaletteNameUnique",value =>
-            this.props.palettes.every(({paletteName}) =>
-                paletteName.toLowerCase() !== value.toLowerCase())
-        );
-    }
+
 
     handleChange(evt){
         this.setState({
             [evt.target.name]: evt.target.value
         });
     }
+    showForm(){
+        this.setState({formShowing:true});
+    }
     render() {
-        const {classes,open} = this.props;
-        const {newPaletteName} = this.state;
+        const {classes,open,palettes,savePalette} = this.props;
+
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -90,29 +92,17 @@ class PaletteFormNav extends Component {
 
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={()=>this.props.savePalette(newPaletteName)}>
-                            <TextValidator
-                                label="Palette Name"
-                                name="newPaletteName"
-                                value={this.state.newPaletteName}
-                                onChange={this.handleChange}
-                                validators={["required","isPaletteNameUnique"]}
-                                errorMessages={["Enter Palette Name","Palette Name is already used"]}
-                            />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-
-                            >
-                                Save Palette
+                        <Link to='/' style={{textDecoration: 'none'}}>
+                            <Button variant="contained" color="secondary" className={classes.button}>
+                              Go Back
                             </Button>
-                        </ValidatorForm>
-                        <Button variant="contained" color="secondary">
-                            <Link to='/'>Go Back</Link>
+                        </Link>
+                        <Button variant="contained" color="primary" onClick={this.showForm} className={classes.button}>
+                            Save
                         </Button>
                     </div>
                 </AppBar>
+                {this.state.formShowing && (<PaletteMetaForm palettes={palettes} savePalette={savePalette} />)}
             </div>
         );
     }
