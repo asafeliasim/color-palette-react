@@ -31,22 +31,21 @@ class PaletteMetaForm extends Component {
             [evt.target.name]: evt.target.value
         });
     }
+    // save emoji and send to save palette
     saveEmoji(emoji){
-        console.log(emoji.native);
+
         const newPalette ={
             paletteName:this.state.newPaletteName,
             emoji:emoji.native
         }
         this.props.savePalette(newPalette)
     }
+    // open emoji dialog
     showEmojiPicker(){
         this.setState({stage: "emoji"})
     }
 
 
-  /*  handleClose = () => {
-        this.setState({open:false});
-    };*/
     render() {
         const {hideForm} = this.props;
         const {newPaletteName,stage} = this.state;
