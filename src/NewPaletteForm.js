@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import seedColors from "./seedColors";
 import { withStyles} from '@material-ui/core/styles';
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
@@ -25,8 +26,8 @@ class NewPaletteForm extends Component {
         super(props)
         this.state= {
             open: false,
-            colors: this.props.palettes[0].colors,
-            newPaletteName:''
+            colors: seedColors[0].colors
+
         };
         this.addNewColor= this.addNewColor.bind(this);
         this.handleChange= this.handleChange.bind(this);
