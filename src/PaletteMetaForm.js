@@ -38,7 +38,8 @@ class PaletteMetaForm extends Component {
             paletteName:this.state.newPaletteName,
             emoji:emoji.native
         }
-        this.props.savePalette(newPalette)
+        this.props.savePalette(newPalette);
+        this.setState({stage:""});
     }
     // open emoji dialog
     showEmojiPicker(){
