@@ -6,11 +6,11 @@ import {Link} from 'react-router-dom';
 
 
 class PaletteList extends Component {
-    goTopalette(id){
+    goToPalette(id){
         this.props.history.push(`/palette/${id}`); 
     }
     render() {
-        var {palettes,classes} = this.props;
+        var {palettes,classes,deletePalette} = this.props;
         return (
             <div className={classes.root}>
                 <div className={classes.container}>
@@ -21,7 +21,13 @@ class PaletteList extends Component {
                     <div className={classes.palettes}>
                     {
                         palettes.map(palette =>(
-                            <MinPalette {...palette} handleClick={()=>this.goTopalette(palette.id)} key={palette.id}/>
+                            <MinPalette
+                                {...palette}
+                                handleClick={()=>this.goToPalette(palette.id)}
+                                key={palette.id}
+                                id={palette.id}
+                                handleDelete={deletePalette}
+                            />
                         ))
                     }
                     </div>    
