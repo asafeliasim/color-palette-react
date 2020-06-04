@@ -1,12 +1,19 @@
 import sizes from './sizes';
+import bg from './bg.svg';
 
 export default {
     root: {
-        backgroundColor: "blue",
         height: '150vh',
         display: 'flex',
         alignItems: 'flex-start',
-        justifyContent: 'center'        
+        justifyContent: 'center',
+        /* background by SVGBackgrounds.com */
+        backgroundColor: '#1e8feb',
+        backgroundImage: `url(${bg})`,
+        overflow:'scroll'
+    },
+    heading:{
+        fontSize: "1.5rem",
     },
     container:{
         width: '50%',
@@ -20,7 +27,6 @@ export default {
         [sizes.down('xs')]:{
             width: '75%',
         },
-
     },
     nav:{
         display: "flex",
@@ -44,7 +50,7 @@ export default {
         },
         [sizes.down('xs')]: {
             gridTemplateColumns: "repeat(1,100%)",
-            gridGap: "1rem"
+            gridGap: "1.4rem"
         }
     }
 };
