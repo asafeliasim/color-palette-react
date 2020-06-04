@@ -35,7 +35,7 @@ class PaletteFormNav extends Component {
     }
     render() {
         const {classes,open,palettes,savePalette} = this.props;
-
+        const {formShowing} = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -80,7 +80,7 @@ class PaletteFormNav extends Component {
                         </Button>
                     </div>
                 </AppBar>
-                {this.state.formShowing && (
+                {formShowing && (
                     <PaletteMetaForm palettes={palettes} savePalette={savePalette} hideForm={this.hideForm} />
                 )}
             </div>
