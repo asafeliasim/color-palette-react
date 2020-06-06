@@ -12,7 +12,9 @@ The app is full of animations and invested effects, validaton input and comforta
 - Home - palette color list, the component render user color-palettes from localstorage.
 ![](/img/head.png)
 
-- FD
+- Palette -The current palette that the user is in. This component allows user to copy the colors and approach to more colors with then   same shade by choice.
+
+![](/img/palette.png)
 
 https://palette-color-picker-rj.netlify.app/
 
