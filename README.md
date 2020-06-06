@@ -1,8 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## React Color-palette-app
+A React js application to create palette of colors, copy and used them in user projects.
+This application build with Material UI, with many functionality as drag and draw, emojis and well-invested user-interface.
+
+![](/img/head.JPG)
 
 ### `yarn start`
 
