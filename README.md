@@ -16,9 +16,11 @@ A Web application that enables the user to create a variety of color patterns, s
 
 ![](/img/palette.png)
 
+![](/img/enter.png)
+
 ![](/img/copy.png)
 
-![](/img/enter.png)
+
 
 - Create palette - This component allows user to create his own palette
 
